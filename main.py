@@ -1,4 +1,5 @@
-from Human import Human
+from Game import Game
 
 if __name__ == '__main__':
-    Human().player_choice()
+    Game().run_game()
+    #TODO commit
