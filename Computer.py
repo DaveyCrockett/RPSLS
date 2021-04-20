@@ -11,15 +11,7 @@ class Computer(Player):
         print(self.name + ' chooses ' + rando)
         return rando
 
-    def computer_player(self):
-        computer_question = input('Will you be playing a computer or player today?')
-        if computer_question == 'computer':
-            self.name = 'Computer'
-            self.play_game(self.name)
-        elif computer_question == 'player':
-            Human().play_game()
-
-
     def computer_turn(self, computer):
         print(computer + ' is next.')
-        computer_turn = self.computer_choice()
+        computer_round = self.computer_choice()
+        return computer_round

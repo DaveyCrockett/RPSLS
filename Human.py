@@ -14,18 +14,17 @@ class Human(Player):
                 return player_gesture
             print('Not one of the choices.')
 
-    def player_turn(self):
-        self.name = input('Enter your name here: ')
+    def player_one_turn(self):
+        self.name = input('Enter player one name here: ')
         print(self.name + ' is first to go.')
-        player_round = self.human_choice()
-        return player_round
+        player_one_round = self.human_choice()
+        return player_one_round
+
+    def player_two_turn(self):
+        self.name = input('Enter player two name here: ')
+        player_two_round = self.human_choice()
+        return player_two_round
 
 
-    def gesture_comparison(self):
-        if player_one_turn == 'rock' and player_two_turn == 'scissors':
-            print('Rock Crushes Scissors')
-        elif player_one_turn == 'Scissors' and player_two_turn == 'paper':
-            print('Scissors cuts Paper')
-        elif player_one_turn == 'paper' and player_two_turn == 'rock':
-            print('Paper covers Rock.')
+
 
