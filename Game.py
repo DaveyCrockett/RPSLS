@@ -10,5 +10,7 @@ class Game:
     def run_game(self):
         self.computer.computer_player()
 
+    def welcome(self):
+        print('Welcome to RPSLS or better known as Rock, Paper, Scissors, Lizard, Spock.')
 
 

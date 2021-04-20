@@ -20,15 +20,6 @@ class Computer(Player):
             Human().play_game()
 
 
-    def play_game(self, computer):
-        self.name = input('Enter your name here: ')
-        print(self.name + ' is first to go.')
-        player_one_turn = Human().human_choice()
+    def computer_turn(self, computer):
         print(computer + ' is next.')
         computer_turn = self.computer_choice()
-        if player_one_turn == 'rock' and computer_turn == 'scissors':
-            print('Rock Crushes Scissors')
-        elif player_one_turn == 'Scissors' and computer_turn == 'paper':
-            print('Scissors cuts Paper')
-        elif player_one_turn == 'paper' and computer_turn == 'rock':
-            print('Paper covers Rock.')
