@@ -8,10 +8,5 @@ class Computer(Player):
         super().__init__()
 
     def computer_choice(self):
-        rando = random.choice(self.chosen_gesture) # rando may be the problem
-        print(self.name + ' chooses ' + rando)
-        return rando
-
-    def computer_turn(self):
-        computer_round = self.computer_choice
-        return computer_round
+       choice = random.choice(self.chosen_gesture)
+       return choice
