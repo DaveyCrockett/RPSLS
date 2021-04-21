@@ -22,38 +22,29 @@ class Game:
             k = 1
             players = [self.player_one, self.computer]
             while k < 3:
-                if players[0].score == 2 or players[1].score == 2:
-                    self.diplay_winner(players)
-                    break
-                else:
-                    self.player_one.name = input('Enter player one name here: ')
-                    self.computer.name = 'Computer'
-                    print(self.player_one.name + ' is first to go.')
-                    self.player_one.choice = self.human.human_choice()
-                    print(self.computer.name + ' is next.')
-                    self.computer.choice = self.computer.computer_choice()
-                    print(self.computer.name + ' choice is: ' + self.computer.choice)
-                    self.gesture_comparison(players)
+                self.player_one.name = input('Enter player one name here: ')
+                self.computer.name = 'Computer'
+                print(self.player_one.name + ' is first to go.')
+                self.player_one.choice = self.human.human_choice()
+                print(self.computer.name + ' is next.')
+                self.computer.choice = self.computer.computer_choice()
+                print(self.computer.name + ' choice is: ' + self.computer.choice)
+                self.gesture_comparison(players)
                 k += 1
             self.diplay_winner(players)
         elif computer_question == 'player':
             k = 1
             players = [self.player_one, self.player_two]
             while k < 4:
-                if players[0].score == 2 or players[1].score == 2:
-                    self.diplay_winner(players)
-                    break
-                else:
-                    self.player_one.name = input('Enter player one name here: ')
-                    self.player_two.name = input('Enter player two name here: ')
-                    print(self.player_one.name + ' is first to go.')
-                    self.player_one.choice = self.human.human_choice()
-                    print(self.player_two.name + ' is next')
-                    self.player_two.choice = self.human.human_choice()
-                    self.gesture_comparison(players)
+                self.player_one.name = input('Enter player one name here: ')
+                self.player_two.name = input('Enter player two name here: ')
+                print(self.player_one.name + ' is first to go.')
+                self.player_one.choice = self.human.human_choice()
+                print(self.player_two.name + ' is next')
+                self.player_two.choice = self.human.human_choice()
+                self.gesture_comparison(players)
                 k += 1
             self.diplay_winner(players)
-
     def gesture_comparison(self, players):
         length = len(players)
         for i in range(length):
