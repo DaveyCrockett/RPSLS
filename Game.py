@@ -21,26 +21,34 @@ class Game:
         if computer_question == 'computer':
             k = 1
             while k < 3:
-                self.player_one.name = input('Enter player one name here: ')
-                self.computer.name = 'Computer'
-                print(self.player_one.name + ' is first to go.')
-                self.player_one.chosen_gesture = self.human.human_choice()
-                print(self.computer.name + ' is next.')
-                self.computer.chosen_gesture = self.computer.computer_turn()
                 players = [self.player_one, self.computer]
-                self.gesture_comparison(players)
+                if players[0].score == 2 or players[1].score == 2:
+                    self.diplay_winner(players)
+                    break
+                else:
+                    self.player_one.name = input('Enter player one name here: ')
+                    self.computer.name = 'Computer'
+                    print(self.player_one.name + ' is first to go.')
+                    self.player_one.chosen_gesture = self.human.human_choice()
+                    print(self.computer.name + ' is next.')
+                    self.computer.chosen_gesture = self.computer.computer_turn()
+                    self.gesture_comparison(players)
                 k += 1
         elif computer_question == 'player':
             k = 1
-            while k < 3:
-                self.player_one.name = input('Enter player one name here: ')
-                self.player_two.name = input('Enter player two name here: ')
-                print(self.player_one.name + ' is first to go.')
-                self.player_one.chosen_gesture = self.human.human_choice()
-                print(self.player_two.name + ' is next')
-                self.player_two.chosen_gesture = self.human.human_choice()
+            while k < 4:
                 players = [self.player_one, self.player_two]
-                self.gesture_comparison(players)
+                if players[0].score == 2 or players[1].score == 2:
+                    self.diplay_winner(players)
+                    break
+                else:
+                    self.player_one.name = input('Enter player one name here: ')
+                    self.player_two.name = input('Enter player two name here: ')
+                    print(self.player_one.name + ' is first to go.')
+                    self.player_one.chosen_gesture = self.human.human_choice()
+                    print(self.player_two.name + ' is next')
+                    self.player_two.chosen_gesture = self.human.human_choice()
+                    self.gesture_comparison(players)
                 k += 1
 
     # TODO Add scoring to gesture_comparison
@@ -49,9 +57,9 @@ class Game:
         length = len(players)
         for i in range(length):
             for j in range(i):
-                player_compare = self.comparison(players[i], players[j])
-                print(players[i].name + ' score is: ' + str(player_compare[0]))
-                print(players[j].name + ' score is: ' + str(player_compare[1]))
+                player_compare = self.comparison(players[j], players[i])
+                print(players[j].name + ' score is: ' + str(player_compare[0]))
+                print(players[i].name + ' score is: ' + str(player_compare[1]))
 
 
     def comparison(self, player_one, player_two):
@@ -72,7 +80,7 @@ class Game:
                 self.player_two.score += 0
                 return [self.player_one.score, self.player_two.score]
             elif player_two.chosen_gesture == 'scissors':
-                self.player_one += 0
+                self.player_one.score += 0
                 self.player_two.score += 1
                 return [self.player_one.score, self.player_two.score]
         elif 'paper' in (player_one.chosen_gesture, player_two.chosen_gesture) and 'rock' in (player_one.chosen_gesture, player_two.chosen_gesture):
@@ -92,7 +100,7 @@ class Game:
                 self.player_two.score += 0
                 return [self.player_one.score, self.player_two.score]
             elif player_two.chosen_gesture == 'rock':
-                self.player_one += 0
+                self.player_one.score += 0
                 self.player_two.score += 1
                 return [self.player_one.score, self.player_two.score]
         elif 'lizard' in (player_one.chosen_gesture, player_two.chosen_gesture) and 'Spock' in (player_one.chosen_gesture, player_two.chosen_gesture):
@@ -102,7 +110,7 @@ class Game:
                 self.player_two.score += 0
                 return [self.player_one.score, self.player_two.score]
             elif player_two.chosen_gesture == 'lizard':
-                self.player_one += 0
+                self.player_one.score += 0
                 self.player_two.score += 1
                 return [self.player_one.score, self.player_two.score]
         elif 'Spock' in (player_one.chosen_gesture, player_two.chosen_gesture) and 'scissors' in (player_one.chosen_gesture, player_two.chosen_gesture):
@@ -112,7 +120,7 @@ class Game:
                 self.player_two.score += 0
                 return [self.player_one.score, self.player_two.score]
             elif player_two.chosen_gesture == 'Spock':
-                self.player_one += 0
+                self.player_one.score += 0
                 self.player_two.score += 1
                 return [self.player_one.score, self.player_two.score]
         elif 'scissors' in (player_one.chosen_gesture, player_two.chosen_gesture) and 'lizard' in (player_one.chosen_gesture, player_two.chosen_gesture):
@@ -122,7 +130,7 @@ class Game:
                 self.player_two.score += 0
                 return [self.player_one.score, self.player_two.score]
             elif player_two.chosen_gesture == 'scissors':
-                self.player_one += 0
+                self.player_one.score += 0
                 self.player_two.score += 1
                 return [self.player_one.score, self.player_two.score]
         elif 'lizard' in (player_one.chosen_gesture, player_two.chosen_gesture) and 'paper' in (player_one.chosen_gesture, player_two.chosen_gesture):
@@ -142,6 +150,7 @@ class Game:
                 self.player_two.score += 0
                 return [self.player_one.score, self.player_two.score]
             elif player_two.chosen_gesture == 'paper':
+                self.player_one.score += 0
                 self.player_two.score += 1
                 return [self.player_one.score, self.player_two.score]
         elif 'Spock' in (player_one.chosen_gesture, player_two.chosen_gesture) and 'rock' in (player_one.chosen_gesture, player_two.chosen_gesture):
@@ -156,3 +165,9 @@ class Game:
                 return [self.player_one.score, self.player_two.score]
         else:
            print('We have a tie!')
+
+    def diplay_winner(self, players):
+        if players[0].score > players[1].score:
+            print(players[0].name + ' is the winner!')
+        elif players[1].score > players[0].score:
+            print(players[1].name + ' is the winner!')

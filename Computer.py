@@ -13,5 +13,5 @@ class Computer(Player):
         return rando
 
     def computer_turn(self):
-        computer_round = self.computer_choice()
+        computer_round = self.computer_choice
         return computer_round
